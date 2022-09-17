@@ -17,8 +17,6 @@ export default {
       ],
     }
   },
-  mounted() {
-    this.$axios.get("/users")
-  },
+  mounted() {},
 }
 </script>

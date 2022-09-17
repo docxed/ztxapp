@@ -18,8 +18,10 @@ require("../config/db-connect")
 
 // Register controllers
 const user = require("./controller/userController")
+const notify = require("./controller/notifyController")
 
 app.use("/api", user)
+app.use("/api", notify)
 
 const port = process.env.PORT || 3001
 app.listen(port, () => {

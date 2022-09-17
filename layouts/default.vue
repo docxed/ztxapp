@@ -2,14 +2,16 @@
   <v-app dark>
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
+        <div v-for="(item, i) in items" :key="i">
+          <v-list-item :to="item.to" router exact v-if="item.role.includes(getUser.role)">
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </v-list-item>
+        </div>
       </v-list>
       <v-btn
         absolute
@@ -26,6 +28,21 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <!-- Me -->
+      <div v-if="getUser" class="mr-3">
+        <v-menu offset-y rounded="rounded">
+          <template v-slot:activator="{ on, attrs }">
+            <v-chip class="ma-2" pill v-bind="attrs" v-on="on" color="white black--text">
+              {{ `😝 ${getUser.name || "ไม่ได้ตั้งชื่อ"}` }} <v-icon>mdi-menu-down</v-icon>
+            </v-chip>
+          </template>
+          <v-list>
+            <v-list-item @click="$router.push('/signout')">
+              <v-list-item-title>ออกจากระบบ</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
     </v-app-bar>
     <v-main>
       <Nuxt />
@@ -46,10 +63,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex"
 export default {
-  async mounted() {
-    console.log(this.getUser)
-    console.log(this.getToken)
-  },
+  async mounted() {},
   data() {
     return {
       clipped: false,
@@ -60,11 +74,19 @@ export default {
           icon: "mdi-view-dashboard",
           title: "แดชบอร์ด",
           to: "/",
+          role: ["user", "admin"],
         },
         {
           icon: "mdi-clock",
           title: "จับเวลาเล่นเกม",
           to: "/playtimeout",
+          role: ["user", "admin"],
+        },
+        {
+          icon: "mdi-note",
+          title: "บันทึกความดี",
+          to: "/note",
+          role: ["user", "admin"],
         },
       ],
       miniVariant: false,
