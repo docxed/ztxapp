@@ -20,7 +20,7 @@ require("../config/db-connect")
 const user = require("./controller/userController")
 const notify = require("./controller/notifyController")
 
-app.get("/", (req, res) => {
+app.get("/api/hello", (req, res) => {
   res.status(200).send("Hello This is 🚀 ZTX App API!")
 })
 app.use("/api", user)

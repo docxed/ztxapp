@@ -1,6 +1,6 @@
 <template>
   <v-dialog :value="visible" persistent width="300">
-    <v-card color="primary" dark>
+    <v-card color="purple" dark>
       <v-card-text class="pa-4">
         {{ text }}
         <v-progress-linear indeterminate color="white" class="my-2" />

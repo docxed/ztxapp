@@ -63,7 +63,9 @@
 <script>
 import { mapGetters, mapActions } from "vuex"
 export default {
-  async mounted() {},
+  async mounted() {
+    this.helloServer()
+  },
   data() {
     return {
       clipped: false,
@@ -99,6 +101,18 @@ export default {
     ...mapGetters("users", ["getUser", "getToken"]),
     ...mapGetters("messages", ["getMessage"]),
   },
-  methods: {},
+  methods: {
+    async helloServer() {
+      this.$loader(true)
+      this.$axios
+        .get("/hellos")
+        .catch((error) => {
+          console.error(error)
+        })
+        .finally(() => {
+          this.$loader(false)
+        })
+    },
+  },
 }
 </script>

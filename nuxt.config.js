@@ -29,6 +29,7 @@ export default {
   plugins: [
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/rules.js" },
+    { src: "~/plugins/loader.js" },
     { src: "~/plugins/persistedState.client.js" },
   ],
 
