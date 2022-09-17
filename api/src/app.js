@@ -9,7 +9,7 @@ const app = express()
 app.use(express.json())
 app.use(
   cors({
-    origin: process.env.NODE_ENV === "production" ? process.env.PROD_URL : process.env.DEV_URL,
+    origin: process.env.NODE_ENV === "production" ? ["https://ztxapp.vercel.app"] : true,
     credentials: true,
   })
 )
