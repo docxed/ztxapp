@@ -3,7 +3,7 @@ import axios from "axios"
 
 export default (context, inject) => {
   const $axios = axios.create({
-    baseURL: `${process.env.NUXT_ENV_BASE_URL}/api`,
+    baseURL: `${process.env.NUXT_ENV_API_URL}/api`,
   })
   $axios.interceptors.request.use(
     function (config) {
