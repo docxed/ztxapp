@@ -90,6 +90,12 @@ export default {
           to: "/note",
           role: ["user", "admin"],
         },
+        {
+          icon: "mdi-account-question",
+          title: "สุ่มผู้เล่น",
+          to: "/random",
+          role: ["user", "admin"],
+        },
       ],
       miniVariant: false,
       right: true,
