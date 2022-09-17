@@ -105,7 +105,7 @@ export default {
     async helloServer() {
       this.$loader(true)
       this.$axios
-        .get("/hellos")
+        .get("/hello")
         .catch((error) => {
           console.error(error)
         })
