@@ -30,6 +30,7 @@ export default {
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/rules.js" },
     { src: "~/plugins/loader.js" },
+    { src: "~/plugins/moment.js" },
     { src: "~/plugins/persistedState.client.js" },
   ],
 

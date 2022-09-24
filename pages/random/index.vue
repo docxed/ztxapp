@@ -19,8 +19,13 @@
 
     <v-row>
       <v-col class="text-center">
-        <v-btn color="purple white--text" @click="randomNumber()" :loading="stages === 'random'"
-          >สุ่ม!</v-btn
+        <v-btn
+          color="purple white--text"
+          @click="randomNumber()"
+          :loading="stages === 'random'"
+          :disabled="this.usersData.length === 0"
+        >
+          สุ่ม!</v-btn
         >
       </v-col>
     </v-row>
@@ -43,10 +48,12 @@ export default {
     }
   },
   async mounted() {
+    this.isMobile = this.$vuetify.breakpoint.xsOnly ? true : false
     this.fetchPlayers()
   },
   created() {},
   data: () => ({
+    isMobile: false,
     usersData: [],
     total: 0,
     stages: "init",
